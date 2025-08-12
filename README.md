@@ -1,7 +1,7 @@
 # Technology Assignment 12/08/2025
 ### Data Types, Basic Python
 ### Execute the python code not c code
-<br>to compile dll : 
+to compile dll : 
 ```gcc -shared -o c.dll src/main.c```
 <br>Only works on window.
 <br>**These code are not optimized or efficient in any way.**
