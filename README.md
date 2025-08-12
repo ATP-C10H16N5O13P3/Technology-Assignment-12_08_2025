@@ -4,6 +4,7 @@
 ```gcc -shared -o c.dll src/main.c```
 <br>Only works on window.
 <br>**These code are not optimized or efficient in any way.**
+<br>Execute the python code not c code
 ```
 👋 Hey everyone! Great job building your chatbots last session. They used a lot of strings — but what happens when Python deals with numbers or True/False questions?
 
