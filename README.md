@@ -1,6 +1,6 @@
 # Technology Assignment 12/08/2025
 **Data Types, Basic Python**
-to compile dll : 
+<br>to compile dll : 
 ```gcc -shared -o c.dll main.c```
 only works on window
 ```
