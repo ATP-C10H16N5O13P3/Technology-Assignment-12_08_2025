@@ -56,7 +56,7 @@ __declspec(dllexport)int* INT(char* filename){
     int sum = 0;
     for (size_t i = 0; i < int_arr_size; i++){ sum += line[i]; }
 
-    float temp_avg = sum / int_arr_size;
+    float temp_avg = (float)sum / (float)int_arr_size;
     int avg = floor(temp_avg);
     for (mid[1] = 0; temp_avg != avg && mid[1] != 6; mid[1]++)
     {
