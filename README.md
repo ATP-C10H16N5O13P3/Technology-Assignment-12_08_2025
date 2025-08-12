@@ -1,5 +1,8 @@
 # Technology Assignment 12/08/2025
 **Data Types, Basic Python**
+to compile dll : 
+```gcc -shared -o c.dll main.c```
+only works on window
 ```
 👋 Hey everyone! Great job building your chatbots last session. They used a lot of strings — but what happens when Python deals with numbers or True/False questions?
 
