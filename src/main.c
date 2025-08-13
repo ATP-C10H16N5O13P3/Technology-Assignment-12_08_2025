@@ -151,7 +151,7 @@ __declspec(dllexport)int* INT(char* filename){
         }
     }
 
-    
+    //find the number with the highest count
     int mode_count = 0;
     for (size_t i = 0; i < int_arr_size; i++)
     {
@@ -195,55 +195,64 @@ __declspec(dllexport)int check_sort(int arr[], int size){
     return 0;
 }
 
+//define function to return int array size
 __declspec(dllexport)int INT_arr_size(){
     return int_arr_size;
 }
 
+//define function of str
 __declspec(dllexport)char** STR(char* filename){
+    //open file
     FILE *file = fopen(filename, "r");
     if (!file) {
         perror("Failed to open file");
         exit(1);
     }
 
+    //create read buffer
     static char line[100][1024];
 
     for (size_t i = 0; i < 100; i++)
     {
-        fgets(line[i], sizeof(line), file);
-        line[i][strcspn(line[i], "\n")] = '\0';
+        fgets(line[i], sizeof(line), file); //read
+        line[i][strcspn(line[i], "\n")] = '\0'; //remove newline
         //printf("Read line: %s\n", line[i]);
 
+        //if EOF then exit the loop
         if (strcmp(line[i], "EOF") == 0) {
             char_arr_size = i;
             break;
         }
     }
 
+    //change from 2D array to pointer array
     static char* ptrs[100];
     for (int i = 0; i < 100; i++) {
         ptrs[i] = line[i];
     }
 
-    fclose(file);
-    return ptrs;
+    fclose(file); //close file
+    return ptrs; //return pointer array
 }
 
+//define function to return str array size
 __declspec(dllexport)int STR_arr_size(){
     return char_arr_size;
 }
 
+//define function of bool
 __declspec(dllexport)int* BOOL(char* filename){
+    //open file
     FILE *file = fopen(filename, "r");
     if (!file) {
         perror("Failed to open file");
         exit(1);
     }
     
-    static char line_char[100][1024];
-    static int line[100];
-    static bool line_bool[100];
-    static int midBool[7];
+    static char line_char[100][1024]; //read buffer
+    static int line[100]; //int buffer
+    static bool line_bool[100]; //bool (the thing we will use
+    static int midBool[7]; //return values
     /*
     midBool[0] = which has more true or false
     - 0 = false more, 1 = true more
@@ -257,24 +266,28 @@ __declspec(dllexport)int* BOOL(char* filename){
 
     for (size_t i = 0; i < 100; i++)
     {
-        fgets(line_char[i], sizeof(line_char[i]), file);
-        line_char[i][strcspn(line_char[i], "\n")] = '\0';
+        fgets(line_char[i], sizeof(line_char[i]), file); //read
+        line_char[i][strcspn(line_char[i], "\n")] = '\0'; //remove newline
         //printf("Read line: %s\n", line_char[i]);
 
+        //if EOF stop reading
         if (strcmp(line_char[i], "EOF") == 0) {
             bool_arr_size = i;
             break;
         }
 
+        //change str to int
         line[i] = atoi(line_char[i]);
     }
 
+    //check for empty file or too big of file
     if (bool_arr_size == 0) {
         printf("Error: No EOF found or empty file.\n");
         fclose(file);
         return NULL;
     }
 
+    //change int to bool
     for (size_t i = 0; i < bool_arr_size; i++)
     {
         if (line[i] == 0) {
@@ -287,6 +300,7 @@ __declspec(dllexport)int* BOOL(char* filename){
         }
     }
     
+    //count the amount of true and false
     size_t true_count = 0;
     size_t false_count = 0;
     for (size_t i = 0; i < bool_arr_size; i++)
@@ -300,6 +314,8 @@ __declspec(dllexport)int* BOOL(char* filename){
             exit(1);
         }
     }
+    
+    //compare if true or false is more
     if (true_count > false_count)
     {
         midBool[0] = 1;
@@ -309,6 +325,7 @@ __declspec(dllexport)int* BOOL(char* filename){
         midBool[0] = -1;
     }
 
+    //calculate percentage of true and change from float to integer and decimal place
     float percentage_true = (float)true_count / (float)bool_arr_size * 100;
     int temp_true = floor(percentage_true);
     for (midBool[2] = 0; percentage_true != temp_true && midBool[2] != 6; midBool[2]++) {
@@ -318,6 +335,7 @@ __declspec(dllexport)int* BOOL(char* filename){
     midBool[1] = temp_true;
     midBool[3] = true_count;
 
+    //calculate percentage of false and change from float to integer and decimal place
     float percentage_false = (float)false_count / (float)bool_arr_size * 100;
     int temp_false = floor(percentage_false);
     for (midBool[5] = 0; percentage_false != temp_false && midBool[5] != 6; midBool[5]++) {
@@ -327,5 +345,5 @@ __declspec(dllexport)int* BOOL(char* filename){
     midBool[4] = temp_false;
     midBool[6] = false_count;
     
-    return midBool;
+    return midBool; //return all values
 }
