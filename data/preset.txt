@@ -1,0 +1,4 @@
+About food preference
+1: mac & cheese
+2: egg fried rice
+3: spagetti carbonara
