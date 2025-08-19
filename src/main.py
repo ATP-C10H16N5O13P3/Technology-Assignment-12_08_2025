@@ -2,6 +2,10 @@ import ctypes
 import os
 import math
 import time
+from Info import info
+
+info()
+
 #you can store data better by using a csv file instead of multiple txt file
 
 #import dll file (C language)
