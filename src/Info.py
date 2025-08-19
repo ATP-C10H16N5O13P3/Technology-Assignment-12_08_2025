@@ -49,6 +49,7 @@ def info ():
                             temp_str = input(f"What do you think of \033[1m{data_preset_food[i]}\033[0m? (Comments/Review): ")
                             print(temp_str, file=file_str)
                         print("EOF", file=file_str)
+                    exit = True
                     os.system('cls')
                 elif sure_or_not.lower() == 'n':
                     exit = True
@@ -56,8 +57,6 @@ def info ():
                     return
                 else:
                     print("Invalid Input, Try again")
-                exit_2 = True
-                exit = True
         elif input_info.lower() == 'n':
             exit = True
             return
